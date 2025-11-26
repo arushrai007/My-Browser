@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NOVA Start</title>
+  <style>
+    * {
+      font-family: "Segoe UI", sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(
+        135deg,
+        #f6b6c8,
+        #c7e8ff,
+        #cdb4ff
+      );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrapper {
+      text-align: center;
+      width: 90%;
+      max-width: 900px;
+    }
+
+    /* ===== SEARCH BAR ===== */
+    .search-box {
+      background: white;
+      padding: 14px 22px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .search-box input {
+      border: none;
+      outline: none;
+      font-size: 16px;
+      flex: 1;
+    }
+
+    .search-btn {
+      background: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+    }
+
+    /* ===== QUICK SITES GRID ===== */
+    .grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.92);
+      border-radius: 18px;
+      padding: 18px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.25s;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .card img {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 8px;
+    }
+
+    .card span {
+      font-size: 13px;
+      font-weight: 600;
+      display: block;
+    }
+
+    .add {
+      font-size: 26px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <!-- SEARCH -->
+    <div class="search-box">
+      <input id="searchInput" placeholder="Search the web..." />
+      <button class="search-btn" onclick="search()">🔍</button>
+    </div>
+
+    <!-- QUICK ACCESS -->
+    <div class="grid">
+      <div class="card" onclick="openSite('https://www.alibaba.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/888/888848.png">
+        <span>Alibaba</span>
+      </div>
+
+      <div class="card" onclick="openSite('https://www.aliexpress.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/888/888863.png">
+        <span>AliExpress</span>
+      </div>
+
+      <div class="card" onclick="openSite('https://www.reddit.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111589.png">
+        <span>Reddit</span>
+      </div>
+
+      <div class="card" onclick="openSite('https://www.twitter.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png">
+        <span>Twitter</span>
+      </div>
+
+      <div class="card" onclick="openSite('https://www.airbnb.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111320.png">
+        <span>Airbnb</span>
+      </div>
+
+      <div class="card" onclick="openSite('https://www.youtube.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+        <span>YouTube</span>
+      </div>
+
+      <div class="card" onclick="openSite('https://www.netflix.com')">
+        <img src="https://cdn-icons-png.flaticon.com/512/732/732228.png">
+        <span>Netflix</span>
+      </div>
+
+      <div class="card add" onclick="addSite()">+</div>
+    </div>
+
+  </div>
+
+  <script>
+    function search() {
+      let q = document.getElementById("searchInput").value;
+      if (!q) return;
+      window.location.href =
+        "https://www.google.com/search?q=" + q;
+    }
+
+    function openSite(url) {
+      window.location.href = url;
+    }
+
+    function addSite() {
+      const name = prompt("Site name:");
+      const url = prompt("Site URL:");
+      if (url) openSite(url);
+    }
+  </script>
+
+</body>
+</html>

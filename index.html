@@ -1,113 +1,215 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nova Browser</title>
+  <title>NOVA Browser</title>
   <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Segoe UI", sans-serif;
-    }
+    * { box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
 
     body {
       margin: 0;
       background: radial-gradient(circle at top, #0f2027, #020409);
       color: white;
       overflow: hidden;
+      transition: 0.3s;
+    }
+
+    body.light {
+      background: #f2f2f2;
+      color: #111;
+    }
+
+    #layout {
+      display: flex;
+      height: 100vh;
+    }
+
+    /* ===== SIDEBAR ===== */
+    #sidebar {
+      width: 70px;
+      background: rgba(20,20,20,0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 10px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .side-btn {
+      width: 42px;
+      height: 42px;
+      margin: 10px 0;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 18px;
+    }
+
+    .side-btn:hover {
+      background: #00ffd5;
+      color: black;
+    }
+
+    /* ===== MAIN STACK ===== */
+    #main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ===== TABS ===== */
+    #tabs {
+      height: 40px;
+      background: rgba(30,30,30,0.9);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      overflow-x: auto;
+    }
+
+    .tab {
+      background: rgba(255,255,255,0.1);
+      padding: 6px 14px;
+      border-radius: 12px;
+      margin-right: 8px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .tab.active {
+      background: #00ffd5;
+      color: black;
+      font-weight: 600;
     }
 
     /* ===== TOP BAR ===== */
     #topbar {
       height: 60px;
-      background: rgba(30, 30, 30, 0.75);
-      backdrop-filter: blur(15px);
+      background: rgba(30,30,30,0.7);
+      backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       padding: 0 16px;
       gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     #logo {
+      font-size: 18px;
       font-weight: 700;
-      font-size: 20px;
       color: #00ffd5;
-      letter-spacing: 1px;
     }
 
     .nav-btn {
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       color: white;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 10px;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .nav-btn:hover {
-      background: #00ffd5;
-      color: black;
-      transform: scale(1.05);
     }
 
     #url {
       flex: 1;
-      height: 40px;
+      height: 36px;
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.2);
       background: rgba(255,255,255,0.08);
       color: white;
-      padding: 0 18px;
-      outline: none;
-      font-size: 14px;
+      padding: 0 16px;
     }
 
-    #go {
+    #go, #themeBtn {
       background: linear-gradient(135deg, #00ffd5, #00aaff);
       border: none;
-      color: black;
-      padding: 10px 20px;
+      padding: 8px 18px;
       border-radius: 20px;
       cursor: pointer;
       font-weight: 600;
-      transition: 0.25s;
-    }
-
-    #go:hover {
-      opacity: 0.8;
-      transform: translateY(-2px);
     }
 
     /* ===== WEBVIEW ===== */
     webview {
       width: 100%;
-      height: calc(100vh - 60px);
+      height: calc(100vh - 100px);
       border: none;
     }
+
+    /* ===== AI PANEL ===== */
+    #aiPanel {
+      position: fixed;
+      right: -320px;
+      top: 0;
+      width: 320px;
+      height: 100vh;
+      background: rgba(20,20,20,0.95);
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding: 15px;
+      transition: 0.3s;
+    }
+
+    #aiPanel.open {
+      right: 0;
+    }
+
+    textarea {
+      width: 100%;
+      height: 70%;
+      border-radius: 12px;
+      background: #111;
+      color: white;
+      border: none;
+      padding: 12px;
+    }
+
   </style>
 </head>
 
 <body>
+  <div id="layout">
 
-  <!-- ===== TOP BAR ===== -->
-  <div id="topbar">
-    <div id="logo">⚡ WELCOME ARUSH</div>
+    <!-- SIDEBAR -->
+    <div id="sidebar">
+      <div class="side-btn" onclick="newTab()">➕</div>
+      <div class="side-btn" onclick="toggleAI()">🤖</div>
+      <div class="side-btn" onclick="toggleTheme()">🌗</div>
+    </div>
 
-    <button class="nav-btn" onclick="back()">◀</button>
-    <button class="nav-btn" onclick="forward()">▶</button>
-    <button class="nav-btn" onclick="reload()">⟳</button>
+    <!-- MAIN -->
+    <div id="main">
 
-    <input id="url" placeholder="Search or enter website URL..." />
+      <!-- TABS -->
+      <div id="tabs"></div>
 
-    <button id="go" onclick="go()">Go</button>
+      <!-- TOP BAR -->
+      <div id="topbar">
+        <div id="logo">NOVA</div>
+        <button class="nav-btn" onclick="back()">◀</button>
+        <button class="nav-btn" onclick="forward()">▶</button>
+        <button class="nav-btn" onclick="reload()">⟳</button>
+
+        <input id="url" placeholder="Search or enter URL">
+        <button id="go" onclick="go()">Go</button>
+        <button id="themeBtn" onclick="toggleTheme()">Theme</button>
+      </div>
+
+      <!-- WEBVIEW -->
+      <webview id="webview" src="home.html"></webview>
+
+
+    </div>
   </div>
 
-  <!-- ===== BROWSER ENGINE ===== -->
-  <webview id="webview" src="https://www.google.com"></webview>
+  <!-- AI PANEL -->
+  <div id="aiPanel">
+    <h3>🤖 Nova AI Assistant</h3>
+    <textarea placeholder="Ask anything about the current webpage..."></textarea>
+  </div>
 
   <script src="renderer.js"></script>
-
 </body>
 </html>
