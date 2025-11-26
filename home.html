@@ -1,174 +1,240 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NOVA Start</title>
-  <style>
-    * {
-      font-family: "Segoe UI", sans-serif;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<title>NOVA Neon</title>
 
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(
-        135deg,
-        #f6b6c8,
-        #c7e8ff,
-        #cdb4ff
-      );
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
 
-    .wrapper {
-      text-align: center;
-      width: 90%;
-      max-width: 900px;
-    }
+/* ===== CYBER BACKGROUND ===== */
+body {
+  height: 100vh;
+  background: radial-gradient(circle at top, #0f172a, #020617);
+  overflow: hidden;
+  color: white;
+}
 
-    /* ===== SEARCH BAR ===== */
-    .search-box {
-      background: white;
-      padding: 14px 22px;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+/* Animated neon glow */
+body::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #00ffd5, transparent 70%);
+  top: -150px;
+  left: -150px;
+  opacity: 0.15;
+  filter: blur(80px);
+  animation: float 10s infinite alternate ease-in-out;
+}
 
-    .search-box input {
-      border: none;
-      outline: none;
-      font-size: 16px;
-      flex: 1;
-    }
+body::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #7c3aed, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+  opacity: 0.15;
+  filter: blur(80px);
+  animation: float 12s infinite alternate-reverse ease-in-out;
+}
 
-    .search-btn {
-      background: #4285f4;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      cursor: pointer;
-    }
+@keyframes float {
+  to { transform: translateY(-60px); }
+}
 
-    /* ===== QUICK SITES GRID ===== */
-    .grid {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-    }
+/* ===== MAIN WRAPPER ===== */
+.wrapper {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    .card {
-      background: rgba(255,255,255,0.92);
-      border-radius: 18px;
-      padding: 18px 8px;
-      text-align: center;
-      cursor: pointer;
-      transition: 0.25s;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    }
+/* ===== NEON SEARCH BAR ===== */
+.search-box {
+  width: 620px;
+  max-width: 90%;
+  background: rgba(10, 15, 25, 0.85);
+  border-radius: 40px;
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(0, 255, 213, 0.4);
+  box-shadow:
+    0 0 15px rgba(0,255,213,0.3),
+    0 0 40px rgba(124,58,237,0.25);
+  backdrop-filter: blur(12px);
+}
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-    }
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+}
 
-    .card img {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 8px;
-    }
+.search-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00ffd5, #7c3aed);
+  border: none;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0,255,213,0.8);
+}
 
-    .card span {
-      font-size: 13px;
-      font-weight: 600;
-      display: block;
-    }
+/* ===== NEON GRID ===== */
+.grid {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(4, 160px);
+  gap: 28px;
+}
 
-    .add {
-      font-size: 26px;
-      font-weight: bold;
-    }
-  </style>
+/* ===== NEON CARDS ===== */
+.card {
+  height: 95px;
+  background: rgba(10, 15, 25, 0.85);
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  border: 1px solid rgba(0,255,213,0.35);
+  box-shadow:
+    0 0 18px rgba(0,255,213,0.25),
+    inset 0 0 20px rgba(124,58,237,0.2);
+  transition: 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow:
+    0 0 35px rgba(0,255,213,0.6),
+    0 0 60px rgba(124,58,237,0.4);
+}
+
+.card img {
+  width: 34px;
+  margin-bottom: 6px;
+}
+
+.card span {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ===== NEON PLUS BUTTON ===== */
+.add {
+  font-size: 38px;
+  font-weight: bold;
+  color: #00ffd5;
+  box-shadow:
+    0 0 25px rgba(0,255,213,0.7),
+    inset 0 0 25px rgba(124,58,237,0.4);
+}
+</style>
 </head>
 
 <body>
 
-  <div class="wrapper">
+<div class="wrapper">
 
-    <!-- SEARCH -->
-    <div class="search-box">
-      <input id="searchInput" placeholder="Search the web..." />
-      <button class="search-btn" onclick="search()">🔍</button>
-    </div>
-
-    <!-- QUICK ACCESS -->
-    <div class="grid">
-      <div class="card" onclick="openSite('https://www.alibaba.com')">
-        <img src="https://cdn-icons-png.flaticon.com/512/888/888848.png">
-        <span>Alibaba</span>
-      </div>
-
-      <div class="card" onclick="openSite('https://www.aliexpress.com')">
-        <img src="https://cdn-icons-png.flaticon.com/512/888/888863.png">
-        <span>AliExpress</span>
-      </div>
-
-      <div class="card" onclick="openSite('https://www.reddit.com')">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111589.png">
-        <span>Reddit</span>
-      </div>
-
-      <div class="card" onclick="openSite('https://www.twitter.com')">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png">
-        <span>Twitter</span>
-      </div>
-
-      <div class="card" onclick="openSite('https://www.airbnb.com')">
-        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111320.png">
-        <span>Airbnb</span>
-      </div>
-
-      <div class="card" onclick="openSite('https://www.youtube.com')">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
-        <span>YouTube</span>
-      </div>
-
-      <div class="card" onclick="openSite('https://www.netflix.com')">
-        <img src="https://cdn-icons-png.flaticon.com/512/732/732228.png">
-        <span>Netflix</span>
-      </div>
-
-      <div class="card add" onclick="addSite()">+</div>
-    </div>
-
+  <!-- 🔍 NEON SEARCH -->
+  <div class="search-box">
+    <input id="searchInput" placeholder="Search the cyber web...">
+    <button class="search-btn" onclick="search()">⚡</button>
   </div>
 
-  <script>
-    function search() {
-      let q = document.getElementById("searchInput").value;
-      if (!q) return;
-      window.location.href =
-        "https://www.google.com/search?q=" + q;
-    }
+  <!-- 🚀 NEON QUICK LINKS -->
+  <div class="grid" id="grid">
 
-    function openSite(url) {
-      window.location.href = url;
-    }
+    <div class="card" onclick="openSite('https://www.google.com')">
+      <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png">
+      <span>Google</span>
+    </div>
 
-    function addSite() {
-      const name = prompt("Site name:");
-      const url = prompt("Site URL:");
-      if (url) openSite(url);
-    }
-  </script>
+    <div class="card" onclick="openSite('https://www.youtube.com')">
+      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+      <span>YouTube</span>
+    </div>
+
+    <div class="card" onclick="openSite('https://www.instagram.com')">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
+      <span>Instagram</span>
+    </div>
+
+    <div class="card" onclick="openSite('https://www.netflix.com')">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732228.png">
+      <span>Netflix</span>
+    </div>
+
+    <!-- ✅ WORKING NEON ADD -->
+    <div class="card add" id="addBtn">+</div>
+
+  </div>
+</div>
+
+<script>
+function search() {
+  let q = document.getElementById("searchInput").value;
+  if (!q) return;
+  window.location.href =
+    "https://www.google.com/search?q=" + q;
+}
+
+function openSite(url) {
+  window.location.href = url;
+}
+
+/* ✅ WORKING + BUTTON WITH STORAGE */
+document.getElementById("addBtn").addEventListener("click", function () {
+  let name = prompt("Website Name");
+  let url = prompt("Full Website URL (https://...)");
+
+  if (!name || !url) return;
+
+  let sites = JSON.parse(localStorage.getItem("novaSites")) || [];
+  sites.push({ name, url });
+  localStorage.setItem("novaSites", JSON.stringify(sites));
+
+  loadCustomSites();
+});
+
+function loadCustomSites() {
+  let sites = JSON.parse(localStorage.getItem("novaSites")) || [];
+  let grid = document.getElementById("grid");
+
+  document.querySelectorAll(".dynamic").forEach(e => e.remove());
+
+  sites.forEach(site => {
+    let div = document.createElement("div");
+    div.className = "card dynamic";
+    div.innerHTML = `<span>${site.name}</span>`;
+    div.onclick = () => openSite(site.url);
+    grid.insertBefore(div, document.getElementById("addBtn"));
+  });
+}
+
+loadCustomSites();
+</script>
 
 </body>
 </html>

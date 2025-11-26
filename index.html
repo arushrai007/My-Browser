@@ -24,34 +24,55 @@
     }
 
     /* ===== SIDEBAR ===== */
-    #sidebar {
-      width: 70px;
-      background: rgba(20,20,20,0.9);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 10px;
-      border-right: 1px solid rgba(255,255,255,0.1);
-    }
+  #sidebar {
+  width: 70px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 14px;
+  border-right: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 0 30px rgba(0,255,213,0.12),
+    inset 0 0 25px rgba(255,255,255,0.03);
+}
 
-    .side-btn {
-      width: 42px;
-      height: 42px;
-      margin: 10px 0;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: 0.2s;
-      font-size: 18px;
-    }
+/* ===== NEON SIDEBAR BUTTONS ===== */
+.side-btn {
+  width: 44px;
+  height: 44px;
+  margin: 12px 0;
+  border-radius: 14px;
+  background: rgba(0, 255, 213, 0.08);
+  border: 1px solid rgba(0,255,213,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: #00ffd5;
+  transition: 0.25s;
+  box-shadow: 0 0 12px rgba(0,255,213,0.4);
+}
 
-    .side-btn:hover {
-      background: #00ffd5;
-      color: black;
-    }
+/* Hover Glow Effect */
+.side-btn:hover {
+  background: rgba(0,255,213,0.25);
+  transform: scale(1.08);
+  box-shadow:
+    0 0 26px rgba(0,255,213,1),
+    0 0 50px rgba(124,58,237,0.6);
+}
+
+/* Active Press Effect */
+.side-btn:active {
+  transform: scale(0.95);
+  box-shadow:
+    0 0 16px rgba(0,255,213,0.8);
+}
 
     /* ===== MAIN STACK ===== */
     #main {
@@ -86,51 +107,82 @@
     }
 
     /* ===== TOP BAR ===== */
-    #topbar {
-      height: 60px;
-      background: rgba(30,30,30,0.7);
-      backdrop-filter: blur(12px);
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
+#topbar {
+  height: 64px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 0 25px rgba(0,255,213,0.15),
+    inset 0 0 20px rgba(255,255,255,0.03);
+}
+  #logo {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #00ffd5;
+  text-shadow: 0 0 12px rgba(0,255,213,0.6);
+}
 
-    #logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: #00ffd5;
-    }
+/* ===== NEON NAV BUTTONS ===== */
+.nav-btn {
+  background: rgba(0, 255, 213, 0.08);
+  border: 1px solid rgba(0,255,213,0.3);
+  color: #00ffd5;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 0 10px rgba(0,255,213,0.4);
+}
 
-    .nav-btn {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: white;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
+.nav-btn:hover {
+  background: rgba(0,255,213,0.25);
+  box-shadow: 0 0 22px rgba(0,255,213,0.9);
+}
 
-    #url {
-      flex: 1;
-      height: 36px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.08);
-      color: white;
-      padding: 0 16px;
-    }
+/* ===== GLASS URL BAR ===== */
+#url {
+  flex: 1;
+  height: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  padding: 0 18px;
+  outline: none;
+  font-size: 14px;
+  backdrop-filter: blur(15px);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.08);
+}
 
-    #go, #themeBtn {
-      background: linear-gradient(135deg, #00ffd5, #00aaff);
-      border: none;
-      padding: 8px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-    }
+/* ===== NEON ACTION BUTTONS ===== */
+#go, #themeBtn {
+  background: linear-gradient(135deg, #00ffd5, #7c3aed);
+  border: none;
+  color: black;
+  padding: 8px 18px;
+  border-radius: 22px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow:
+    0 0 14px rgba(0,255,213,0.8),
+    0 0 28px rgba(124,58,237,0.5);
+  transition: 0.25s;
+}
+
+#go:hover, #themeBtn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 0 28px rgba(0,255,213,1),
+    0 0 60px rgba(124,58,237,0.8);
+}
 
     /* ===== WEBVIEW ===== */
     webview {
@@ -165,9 +217,106 @@
       border: none;
       padding: 12px;
     }
+/* ===== NEON TABS BAR ===== */
+#tabsBar {
+  height: 42px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 10px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.tab {
+  padding: 6px 16px;
+  border-radius: 16px;
+  font-size: 13px;
+  cursor: pointer;
+  background: rgba(0,255,213,0.10);
+  color: #00ffd5;
+  border: 1px solid rgba(0,255,213,0.35);
+  box-shadow: 0 0 12px rgba(0,255,213,0.4);
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #00ffd5, #7c3aed);
+  color: black;
+  font-weight: bold;
+  box-shadow:
+    0 0 20px rgba(0,255,213,0.8),
+    0 0 40px rgba(124,58,237,0.6);
+}
+
+.add-tab {
+  margin-left: auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00ffd5, #7c3aed);
+  color: black;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow:
+    0 0 18px rgba(0,255,213,0.9);
+}
+/* ===== WELCOME POPUP ===== */
+#welcomePopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.6s ease;
+}
+
+.welcome-box {
+  background: rgba(10, 15, 25, 0.95);
+  padding: 28px 60px;
+  border-radius: 28px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #00ffd5;
+  letter-spacing: 1px;
+  box-shadow:
+    0 0 30px rgba(0,255,213,0.8),
+    0 0 60px rgba(124,58,237,0.6);
+  animation: pop 0.5s ease;
+}
+
+.welcome-box span {
+  color: #7c3aed;
+  text-shadow: 0 0 10px rgba(124,58,237,0.8);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
 
   </style>
 </head>
+<!-- ✅ WELCOME POPUP -->
+<div id="welcomePopup">
+  <div class="welcome-box">
+    👋 Welcome, <span>Arush</span>
+  </div>
+</div>
 
 <body>
   <div id="layout">
@@ -182,27 +331,30 @@
     <!-- MAIN -->
     <div id="main">
 
-      <!-- TABS -->
-      <div id="tabs"></div>
-
-      <!-- TOP BAR -->
-      <div id="topbar">
-        <div id="logo">NOVA</div>
-        <button class="nav-btn" onclick="back()">◀</button>
-        <button class="nav-btn" onclick="forward()">▶</button>
-        <button class="nav-btn" onclick="reload()">⟳</button>
-
-        <input id="url" placeholder="Search or enter URL">
-        <button id="go" onclick="go()">Go</button>
-        <button id="themeBtn" onclick="toggleTheme()">Theme</button>
-      </div>
-
-      <!-- WEBVIEW -->
-      <webview id="webview" src="home.html"></webview>
-
-
-    </div>
+  <!-- ✅ TABS BAR -->
+  <div id="tabsBar">
+    <div class="tab active" onclick="switchTab(0)">New Tab</div>
+    <div class="add-tab" onclick="newTab()">+</div>
   </div>
+
+  <!-- TOP BAR -->
+  <div id="topbar">
+    <div id="logo">NOVA</div>
+
+    <button class="nav-btn" onclick="back()">◀</button>
+    <button class="nav-btn" onclick="forward()">▶</button>
+    <button class="nav-btn" onclick="reload()">⟳</button>
+
+    <input id="url" placeholder="Search or enter URL">
+    <button id="go" onclick="go()">Go</button>
+    <button id="themeBtn" onclick="toggleTheme()">Theme</button>
+  </div>
+
+  <!-- WEBVIEW -->
+  <webview id="webview" src="home.html"></webview>
+
+</div>
+
 
   <!-- AI PANEL -->
   <div id="aiPanel">

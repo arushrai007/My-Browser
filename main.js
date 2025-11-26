@@ -1,4 +1,5 @@
 const { app, BrowserWindow, session } = require("electron");
+const path = require("path");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -7,15 +8,17 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      webviewTag: true
+      webviewTag: true   // ✅ REQUIRED for <webview>
     }
   });
 
   win.loadFile("index.html");
 
+  // Download support
   session.defaultSession.on("will-download", (event, item) => {
-    console.log("Downloading:", item.getFilename());
-    item.setSavePath(app.getPath("downloads") + "/" + item.getFilename());
+    item.setSavePath(
+      app.getPath("downloads") + "/" + item.getFilename()
+    );
   });
 }
 
