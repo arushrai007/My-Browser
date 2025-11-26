@@ -1,21 +1,24 @@
-window.addEventListener("DOMContentLoaded", () => {
-  const webview = document.getElementById("webview");
-  const urlInput = document.getElementById("url");
-  const goBtn = document.getElementById("go");
+const webview = document.getElementById("webview");
+const urlBar = document.getElementById("url");
 
-  if (!webview || !urlInput || !goBtn) {
-    console.error("UI elements not found!");
-    return;
+function go() {
+  let url = urlBar.value.trim();
+
+  if (!url.startsWith("http")) {
+    url = "https://" + url;
   }
 
-  goBtn.addEventListener("click", () => {
-    let url = urlInput.value.trim();
+  webview.loadURL(url);
+}
 
-    if (!url.startsWith("http")) {
-      url = "https://" + url;
-    }
+function back() {
+  if (webview.canGoBack()) webview.goBack();
+}
 
-    console.log("Loading:", url);
-    webview.setAttribute("src", url);   // ✅ WORKING METHOD
-  });
-});
+function forward() {
+  if (webview.canGoForward()) webview.goForward();
+}
+
+function reload() {
+  webview.reload();
+}
