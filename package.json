@@ -1,0 +1,12 @@
+{
+  "name": "mybrowser",
+  "version": "1.0.0",
+  "description": "My Custom Electron Browser",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^29.0.0"
+  }
+}
