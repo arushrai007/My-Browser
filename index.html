@@ -1,22 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>My Browser</title>
-</head>
-<body style="margin:0; font-family: Arial;">
+  <title>Nova Browser</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
 
-  <div style="padding:10px; background:#222;">
-    <input id="url" type="text" placeholder="Enter URL"
-           style="width:80%; padding:6px;">
-    <button id="go" style="padding:6px 12px;">Go</button>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #0f2027, #020409);
+      color: white;
+      overflow: hidden;
+    }
+
+    /* ===== TOP BAR ===== */
+    #topbar {
+      height: 60px;
+      background: rgba(30, 30, 30, 0.75);
+      backdrop-filter: blur(15px);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+    }
+
+    #logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #00ffd5;
+      letter-spacing: 1px;
+    }
+
+    .nav-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .nav-btn:hover {
+      background: #00ffd5;
+      color: black;
+      transform: scale(1.05);
+    }
+
+    #url {
+      flex: 1;
+      height: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      padding: 0 18px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    #go {
+      background: linear-gradient(135deg, #00ffd5, #00aaff);
+      border: none;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    #go:hover {
+      opacity: 0.8;
+      transform: translateY(-2px);
+    }
+
+    /* ===== WEBVIEW ===== */
+    webview {
+      width: 100%;
+      height: calc(100vh - 60px);
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== TOP BAR ===== -->
+  <div id="topbar">
+    <div id="logo">⚡ NOVA</div>
+
+    <button class="nav-btn" onclick="back()">◀</button>
+    <button class="nav-btn" onclick="forward()">▶</button>
+    <button class="nav-btn" onclick="reload()">⟳</button>
+
+    <input id="url" placeholder="Search or enter website URL..." />
+
+    <button id="go" onclick="go()">Go</button>
   </div>
 
-  <webview id="webview"
-           style="width:100%; height:90vh;"
-           src="https://www.google.com">
-  </webview>
+  <!-- ===== BROWSER ENGINE ===== -->
+  <webview id="webview" src="https://www.google.com"></webview>
 
   <script src="renderer.js"></script>
+
 </body>
 </html>
