@@ -34,7 +34,6 @@ NOVA is a **custom futuristic desktop web browser** built using **Electron and C
 - ⏳ Built-in password manager
 - ⏳ Incognito / private browsing
 - ⏳ Weather & clock widgets
-- ⏳ EXE installer packaging
 - ⏳ User profiles & cloud sync
 
 ---
